@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohd Saad — Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080810;--bg2:#0E0E1A;--bg3:#13131F;--bg4:#1A1A2A;
+  --border:rgba(255,255,255,0.06);--bh:rgba(255,255,255,0.11);
+  --p:#7C6FFF;--p2:#A599FF;--p3:rgba(124,111,255,0.12);
+  --teal:#2DD4BF;--teal2:rgba(45,212,191,0.1);
+  --amber:#FBB040;--text:#EEEDF8;--muted:#7E7C98;--muted2:#4A4860;
+  --green:#4ADE80;
+  --font:'Bricolage Grotesque',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(124,111,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,255,0.025) 1px,transparent 1px);
+  background-size:64px 64px;pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(124,111,255,0.11),transparent);
+  pointer-events:none;z-index:0;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(2rem,calc((100vw - 1200px)/2));height:62px;
+  background:rgba(8,8,16,0.75);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);transition:border-color .3s;
+}
+.nav-logo{font-family:var(--font);font-weight:800;font-size:19px;color:var(--text);text-decoration:none;letter-spacing:-0.04em}
+.nav-logo span{color:var(--p2)}
+.nav-links{display:flex;align-items:center;gap:1.8rem}
+.nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn-cta{font-size:13px;font-weight:600;font-family:var(--font);color:#fff;background:var(--p);border:none;border-radius:8px;padding:8px 18px;cursor:pointer;text-decoration:none;box-shadow:0 0 20px rgba(1, 0, 7, 0.35);transition:all .2s}
+.btn-cta:hover{background:var(--p2);box-shadow:0 0 32px rgba(124,111,255,0.55);transform:translateY(-1px)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+section{padding:110px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--p2);margin-bottom:14px}
+.eyebrow::before{content:'';width:20px;height:1.5px;background:var(--p2);border-radius:2px}
+h2{font-family:var(--font);font-size:clamp(30px,4vw,50px);font-weight:800;letter-spacing:-0.04em;line-height:1.1;color:var(--text);margin-bottom:20px}
+h2 span{color:var(--p2)}
+
+/* Hero */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:62px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--green);background:rgba(74,222,128,0.07);border:1px solid rgba(74,222,128,0.2);border-radius:100px;padding:6px 16px;margin-bottom:26px}
+.hero-badge i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.5)}50%{box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+h1{font-family:var(--font);font-size:clamp(44px,5.5vw,76px);font-weight:800;line-height:1.0;letter-spacing:-0.04em;color:var(--text);margin-bottom:22px}
+h1 em{font-style:normal;color:var(--p2)}
+h1 .outline{-webkit-text-stroke:1.5px var(--p2);color:transparent}
+.hero-sub{font-size:16.5px;font-weight:300;color:var(--muted);line-height:1.75;max-width:440px;margin-bottom:36px}
+.hero-sub strong{color:var(--text);font-weight:500}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-size:14px;font-weight:600;color:#fff;background:var(--p);border:none;border-radius:10px;padding:13px 26px;text-decoration:none;cursor:pointer;box-shadow:0 0 24px rgba(124,111,255,0.35);transition:all .2s}
+.btn-primary:hover{background:var(--p2);box-shadow:0 0 40px rgba(124,111,255,0.55);transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-size:14px;font-weight:500;color:var(--text);background:transparent;border:1px solid var(--bh);border-radius:10px;padding:13px 26px;text-decoration:none;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:var(--p2);background:var(--p3)}
+.hero-stats{display:flex;gap:32px}
+.stat{border-left:2px solid var(--p);padding-left:14px}
+.stat-n{font-family:var(--font);font-size:26px;font-weight:800;letter-spacing:-0.05em;color:var(--text)}
+.stat-l{font-size:12px;color:var(--muted);margin-top:1px}
+
+/* Hero visual */
+.hero-visual{position:relative}
+.visual-glow{position:absolute;inset:-40px;background:radial-gradient(circle at 50% 50%,rgba(124,111,255,0.15),transparent 65%);pointer-events:none}
+.browser-window{position:relative;z-index:1;background:var(--bg3);border:1px solid var(--bh);border-radius:14px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.04)}
+.browser-bar{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#FF5F57}.dot-y{background:#FEBC2E}.dot-g{background:#28C840}
+.browser-url{flex:1;margin-left:8px;font-family:var(--mono);font-size:11px;color:var(--muted2);background:rgba(255,255,255,0.04);border-radius:5px;padding:4px 10px}
+.code-body{padding:20px 22px;font-family:var(--mono);font-size:12.5px;line-height:1.85}
+.kw{color:#C792EA}.fn{color:#82AAFF}.str{color:#C3E88D}.num{color:#F78C6C}.cm{color:var(--muted2);font-style:italic}.vr{color:#FFCB6B}
+.ln{display:block;min-height:1.85em}
+.i1{padding-left:1.4em}.i2{padding-left:2.8em}
+.float-badge{position:absolute;z-index:2;background:var(--bg4);border:1px solid var(--bh);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,0.4);animation:float 3.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.float-badge.b1{bottom:-18px;left:-28px;animation-delay:0s}
+.float-badge.b2{top:-16px;right:-24px;animation-delay:1.2s}
+.fb-icon{font-size:18px}
+.fb-title{font-size:12px;font-weight:600;color:var(--text);line-height:1.2}
+.fb-sub{font-size:11px;color:var(--muted)}
+
+/* About */
+.about-layout{display:grid;grid-template-columns:1.15fr 0.85fr;gap:5rem;align-items:start}
+.about-body p{font-size:15.5px;color:var(--muted);line-height:1.8;margin-bottom:14px}
+.about-body p strong{color:var(--text);font-weight:500}
+.about-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{font-size:13px;font-weight:500;color:var(--p2);background:var(--p3);border:1px solid rgba(124,111,255,0.18);border-radius:100px;padding:6px 14px}
+.about-cards{display:flex;flex-direction:column;gap:12px}
+.ac{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px;transition:border-color .25s,transform .2s}
+.ac:hover{border-color:var(--bh);transform:translateX(4px)}
+.ac-icon{width:38px;height:38px;border-radius:10px;background:var(--p3);border:1px solid rgba(124,111,255,0.2);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.ac-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.ac-sub{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* Experience */
+#experience{padding:100px 0}
+.exp-role{font-family:var(--font);font-size:20px;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-bottom:4px}
+.exp-company{font-size:14px;font-weight:500;color:var(--p2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.exp-company span{font-size:12px;color:var(--muted);font-weight:400}
+.exp-date{font-family:var(--mono);font-size:12px;color:var(--muted2);white-space:nowrap;padding-top:4px}
+.exp-item{padding:36px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:8px}
+.exp-bullets li{font-size:14.5px;color:var(--muted);line-height:1.7;padding-left:18px;position:relative}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--p2);font-size:12px;top:3px}
+.exp-bullets li strong{color:var(--text);font-weight:500}
+.exp-win{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--amber);background:rgba(251,176,64,0.08);border:1px solid rgba(251,176,64,0.2);border-radius:6px;padding:5px 14px;margin-top:16px}
+
+/* Skills */
+.skills-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:1rem}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sk-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .25s,transform .2s;position:relative;overflow:hidden}
+.sk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--p),var(--teal));opacity:0;transition:opacity .3s}
+.sk-card:hover{border-color:var(--bh);transform:translateY(-4px)}
+.sk-card:hover::before{opacity:1}
+.sk-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sk-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.sk-icon.p{background:var(--p3);border:1px solid rgba(124,111,255,0.2)}
+.sk-icon.t{background:var(--teal2);border:1px solid rgba(45,212,191,0.2)}
+.sk-icon.a{background:rgba(251,176,64,0.1);border:1px solid rgba(251,176,64,0.2)}
+.sk-cat{font-size:12.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text)}
+.sk-tags{display:flex;flex-wrap:wrap;gap:7px}
+.sk-tag{font-size:12px;font-family:var(--mono);color:var(--muted);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;padding:4px 10px;transition:color .2s,border-color .2s}
+.sk-card:hover .sk-tag{color:var(--text);border-color:rgba(255,255,255,0.09)}
+
+/* Projects */
+.proj-grid{display:flex;flex-direction:column;margin-top:52px}
+.proj-item{display:grid;grid-template-columns:60px 1fr auto;gap:0 2rem;align-items:start;padding:32px 0;border-top:1px solid var(--border);text-decoration:none;color:inherit;transition:padding-left .3s;position:relative}
+.proj-item:last-child{border-bottom:1px solid var(--border)}
+.proj-item:hover{padding-left:8px}
+.proj-item:hover .proj-arrow{opacity:1;transform:translate(3px,-3px)}
+.proj-item:hover .proj-mockup{border-color:rgba(124,111,255,0.4);box-shadow:0 0 30px rgba(124,111,255,0.18)}
+.proj-num{font-family:var(--mono);font-size:11px;color:var(--muted2);font-weight:500;padding-top:5px}
+.proj-name{font-family:var(--font);font-size:22px;font-weight:800;letter-spacing:-0.04em;color:var(--text);margin-bottom:8px}
+.proj-desc{font-size:14.5px;color:var(--muted);line-height:1.7;margin-bottom:14px;max-width:560px}
+.proj-tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:11.5px;font-family:var(--mono);color:var(--p2);background:var(--p3);border:1px solid rgba(124,111,255,0.2);border-radius:5px;padding:3px 9px}
+.tag.t{color:var(--teal);background:var(--teal2);border-color:rgba(45,212,191,0.2)}
+.proj-highlight{font-size:12px;font-weight:500;color:var(--teal);background:var(--teal2);border:1px solid rgba(45,212,191,0.18);border-radius:6px;padding:4px 10px;margin-top:12px;display:inline-flex;align-items:center;gap:5px}
+.proj-highlight::before{content:'★';font-size:9px}
+.proj-arrow{font-size:20px;color:var(--p2);opacity:0.25;transition:opacity .2s,transform .2s;align-self:center}
+.proj-mockup{width:210px;flex-shrink:0;background:var(--bg4);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s;align-self:center}
+.mock-bar{display:flex;align-items:center;gap:5px;padding:8px 10px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.mdot{width:6px;height:6px;border-radius:50%}
+.mock-body{padding:11px 12px;font-family:var(--mono);font-size:10px}
+
+/* Achievements */
+.ach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:48px}
+.ach-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;gap:18px;transition:all .25s;position:relative;overflow:hidden}
+.ach-card::after{content:'';position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;border-radius:50%;opacity:0.07;transition:opacity .3s}
+.ach-card.gold::after{background:var(--amber)}
+.ach-card.purple::after{background:var(--p)}
+.ach-card.teal::after{background:var(--teal)}
+.ach-card.green::after{background:var(--green)}
+.ach-card:hover{transform:translateY(-4px)}
+.ach-card.gold:hover{border-color:rgba(251,176,64,0.3)}.ach-card.gold:hover::after{opacity:0.13}
+.ach-card.purple:hover{border-color:rgba(124,111,255,0.3)}.ach-card.purple:hover::after{opacity:0.13}
+.ach-card.teal:hover{border-color:rgba(45,212,191,0.3)}.ach-card.teal:hover::after{opacity:0.13}
+.ach-card.green:hover{border-color:rgba(74,222,128,0.3)}.ach-card.green:hover::after{opacity:0.13}
+.ach-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.ach-card.gold .ach-wrap{background:rgba(251,176,64,0.1);border:1px solid rgba(251,176,64,0.2)}
+.ach-card.purple .ach-wrap{background:var(--p3);border:1px solid rgba(124,111,255,0.2)}
+.ach-card.teal .ach-wrap{background:var(--teal2);border:1px solid rgba(45,212,191,0.2)}
+.ach-card.green .ach-wrap{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2)}
+.ach-big{font-family:var(--font);font-size:28px;font-weight:800;letter-spacing:-0.05em;margin-bottom:4px}
+.ach-card.gold .ach-big{color:var(--amber)}.ach-card.purple .ach-big{color:var(--p2)}.ach-card.teal .ach-big{color:var(--teal)}.ach-card.green .ach-big{color:var(--green)}
+.ach-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:5px}
+.ach-sub{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+/* Contact */
+#contact{padding:120px 0 100px;text-align:center;position:relative;overflow:hidden}
+.contact-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(124,111,255,0.1),transparent 65%);pointer-events:none}
+.contact-inner{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.contact-inner .eyebrow{justify-content:center}.contact-inner .eyebrow::before{display:none}.contact-inner .eyebrow::after{content:'';width:20px;height:1.5px;background:var(--p2);border-radius:2px}
+.c-title{font-family:var(--font);font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--text);margin:8px 0 16px}
+.c-title span{color:var(--p2)}
+.c-sub{font-size:16px;color:var(--muted);margin-bottom:36px}
+.c-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font);font-size:15px;font-weight:600;color:#fff;background:var(--p);border:none;border-radius:12px;padding:16px 32px;text-decoration:none;margin-bottom:40px;box-shadow:0 0 40px rgba(124,111,255,0.35);transition:all .2s}
+.c-btn:hover{background:var(--p2);box-shadow:0 0 60px rgba(124,111,255,0.5);transform:translateY(-2px)}
+.socials{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.soc{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--muted);background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 18px;text-decoration:none;transition:all .2s}
+.soc:hover{color:var(--text);border-color:var(--bh);background:var(--bg4)}
+.soc svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+.soc svg.stroke{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+footer{border-top:1px solid var(--border);text-align:center;padding:28px;font-size:13px;color:var(--muted2)}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .65s ease,transform .65s ease}
+.reveal-l.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .about-layout{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .proj-item{grid-template-columns:48px 1fr}
+  .proj-mockup{display:none}
+  .ach-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .skills-grid{grid-template-columns:1fr}
+  .wrap{padding:0 1.2rem}
+  .hero-stats{gap:20px}
+  .nav-links a{display:none}
+  section{padding:80px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">saad<span>.</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:saad.mohd.dev@gmail.com" style="color:#fff" class="btn-cta">Hire Me ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><i></i>Ex LG Soft India · Open to full-time roles</div>
+        <h1>I build<br><em>scalable</em><br><span class="outline">web apps.</span></h1>
+        <p class="hero-sub">Full-stack developer &amp; ex-Research Engineer at <strong>LG Soft India</strong>. I work with <strong>React, Node.js &amp; TypeScript</strong> to ship products that are fast, secure, and maintainable. Final year B.Tech CSE @ Galgotias University.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">See My Work <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          <a href="https://drive.google.com/file/d/1d6CwY-OTopMfu57za6GQIKGA2D5zAmkg/view?usp=sharing" class="btn-outline" download>Download Resume</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-n">8.51</div><div class="stat-l">CGPA</div></div>
+          <div class="stat"><div class="stat-n">250+</div><div class="stat-l">LeetCode solved</div></div>
+          <div class="stat"><div class="stat-n">Top 5%</div><div class="stat-l">SIH 2024</div></div>
+          <div class="stat"><div class="stat-n">6 mo</div><div class="stat-l">@ LG Soft India</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-glow"></div>
+        <div class="browser-window">
+          <div class="browser-bar">
+            <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+            <div class="browser-url">taskManager / src / middleware / auth.ts</div>
+          </div>
+          <div class="code-body">
+<span class="ln"><span class="cm">// httpOnly cookie auth — XSS-safe by design</span></span>
+<span class="ln"><span class="kw">export const</span> <span class="fn">login</span> = <span class="kw">async</span> (req, res) => {</span>
+<span class="ln i1"><span class="kw">const</span> { email, password } = req.body</span>
+<span class="ln"> </span>
+<span class="ln i1"><span class="kw">const</span> user = <span class="kw">await</span> prisma.user.<span class="fn">findUnique</span>({</span>
+<span class="ln i2">where: { email }  <span class="cm">// Prisma: no SQL injection</span></span>
+<span class="ln i1">})</span>
+<span class="ln"> </span>
+<span class="ln i1"><span class="kw">const</span> valid = <span class="kw">await</span> bcrypt.<span class="fn">compare</span>(</span>
+<span class="ln i2">password, user.hash  <span class="cm">// salted hash</span></span>
+<span class="ln i1">)</span>
+<span class="ln"> </span>
+<span class="ln i1"><span class="kw">const</span> token = jwt.<span class="fn">sign</span>(</span>
+<span class="ln i2">{ id: user.id }, process.env.<span class="vr">JWT_SECRET</span></span>
+<span class="ln i1">)</span>
+<span class="ln"> </span>
+<span class="ln i1">res.<span class="fn">cookie</span>(<span class="str">'token'</span>, token, {</span>
+<span class="ln i2">httpOnly: <span class="num">true</span>, <span class="cm">// no JS access</span></span>
+<span class="ln i2">secure: <span class="num">true</span>, sameSite: <span class="str">'strict'</span></span>
+<span class="ln i1">})</span>
+<span class="ln">}</span>
+          </div>
+        </div>
+        <div class="float-badge b1">
+          <div class="fb-icon">🔐</div>
+          <div><div class="fb-title">Security First</div><div class="fb-sub">bcrypt + httpOnly</div></div>
+        </div>
+        <div class="float-badge b2">
+          <div class="fb-icon">⚡</div>
+          <div><div class="fb-title">50% fewer API calls</div><div class="fb-sub">SQLite caching layer</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-layout">
+      <div class="reveal-l">
+        <div class="eyebrow">About Me</div>
+        <h2>I care about the details <span>others skip.</span></h2>
+        <div class="about-body">
+          <p>I'm a final-year Computer Science student at Galgotias University, graduating July 2026. Most recently I worked as a <strong>Research Engineer Intern at LG Soft India</strong>, contributing to V2X automotive middleware used in connected vehicle systems across China, USA, and EU — and won <strong>1st place at the LGSI Technova Hackathon</strong> (₹2,00,000 prize) with a team of 8.</p>
+          <p>I build full-stack systems with a <strong>security-first mindset</strong> — httpOnly cookies over localStorage, bcrypt with salt rounds, Prisma ORM for parameterised queries. These aren't extras, they're defaults. I document every decision so the next developer understands the why.</p>
+          <p>I've also competed in the <strong>Smart India Hackathon Grand Finale</strong>, finishing top 5% of 200+ teams — engineering an AI-powered hybrid energy storage system with a 5-person team and shipping working hardware in 8 weeks under real pressure.</p>
+        </div>
+        <div class="about-chips">
+          <span class="chip">React &amp; TypeScript</span>
+          <span class="chip">Node.js + Express</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">TensorFlow</span>
+          <span class="chip">WebSockets</span>
+          <span class="chip">REST APIs</span>
+        </div>
+      </div>
+      <div class="about-cards reveal d2">
+        <div class="ac">
+          <div class="ac-icon">🏢</div>
+          <div><div class="ac-title">LG Soft India — Research Engineer Intern</div><div class="ac-sub">V2X automotive middleware · DSRC &amp; C-V2X standards<br>Jul 2025 – Jan 2026 · 🥇 1st place LGSI Technova Hackathon</div></div>
+        </div>
+        <div class="ac">
+          <div class="ac-icon">🎓</div>
+          <div><div class="ac-title">Galgotias University</div><div class="ac-sub">B.Tech, Computer Science · CGPA 8.51<br>Nov 2022 – Sept 2026 · Greater Noida, UP</div></div>
+        </div>
+        <div class="ac">
+          <div class="ac-icon">🏆</div>
+          <div><div class="ac-title">SIH Grand Finalist 2024</div><div class="ac-sub">Smart India Hackathon Hardware Edition · KIET Ghaziabad · Top 5% of 200+ teams nationwide</div></div>
+        </div>
+        <div class="ac">
+          <div class="ac-icon">📜</div>
+          <div><div class="ac-title">Certifications</div><div class="ac-sub">Machine Learning Specialization — Stanford / DeepLearning.AI<br>Postman API Fundamentals</div></div>
+        </div>
+        <div class="ac">
+          <div class="ac-icon">💻</div>
+          <div><div class="ac-title">250+ LeetCode Problems</div><div class="ac-sub">Data structures, dynamic programming, graphs — consistent problem-solving practice.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Experience</div>
+    <h2>Where I've worked.</h2>
+    <div style="margin-top:48px">
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-role">Research Engineer Intern</div>
+          <div class="exp-company">LG Soft India <span>· Bengaluru, India</span></div>
+          <ul class="exp-bullets">
+            <li>Developed and enhanced the <strong>V2X Manager middleware interface</strong>, bridging LG's core automotive software stack with V2X-enabled vehicle systems used across <strong>China, USA, and EU markets</strong> — aligned with DSRC and C-V2X communication standards.</li>
+            <li>Contributed to the <strong>Vehicle Solutions R&amp;D platform</strong>, implementing features for real-time vehicle-to-infrastructure (V2I) data exchange pipelines that power connected car communication in smart city deployments.</li>
+            <li>Collaborated with cross-functional engineering teams to improve reliability of connected vehicle workflows, working within the same automotive software standards used by global OEMs.</li>
+          </ul>
+          <div class="exp-win">🥇 1st Place · LGSI Technova Hackathon · ₹2,00,000 prize · Team of 8 engineers</div>
+        </div>
+        <div class="exp-date">Jul 2025 – Jan 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="skills-header">
+      <div><div class="eyebrow">Toolkit</div><h2 style="margin-bottom:0">Technologies I work with.</h2></div>
+      <p style="color:var(--muted);font-size:15px;max-width:320px;text-align:right">Two years of building real products — these are the tools I reach for.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="sk-card reveal">
+        <div class="sk-head"><div class="sk-icon p">⚛️</div><div class="sk-cat">Frontend</div></div>
+        <div class="sk-tags"><span class="sk-tag">React 18</span><span class="sk-tag">TypeScript</span><span class="sk-tag">TailwindCSS</span><span class="sk-tag">HTML / CSS</span><span class="sk-tag">Vite</span></div>
+      </div>
+      <div class="sk-card reveal d1">
+        <div class="sk-head"><div class="sk-icon t">🖥️</div><div class="sk-cat">Backend</div></div>
+        <div class="sk-tags"><span class="sk-tag">Node.js</span><span class="sk-tag">Express</span><span class="sk-tag">Flask 2.2</span><span class="sk-tag">REST APIs</span><span class="sk-tag">JWT Auth</span></div>
+      </div>
+      <div class="sk-card reveal d2">
+        <div class="sk-head"><div class="sk-icon a">🗄️</div><div class="sk-cat">Databases</div></div>
+        <div class="sk-tags"><span class="sk-tag">PostgreSQL</span><span class="sk-tag">SQLite 3</span><span class="sk-tag">MySQL</span><span class="sk-tag">Prisma ORM</span></div>
+      </div>
+      <div class="sk-card reveal">
+        <div class="sk-head"><div class="sk-icon p">🤖</div><div class="sk-cat">AI / ML</div></div>
+        <div class="sk-tags"><span class="sk-tag">TensorFlow 2.10</span><span class="sk-tag">Scikit-Learn</span><span class="sk-tag">Python 3.10</span><span class="sk-tag">LLM Integration</span></div>
+      </div>
+      <div class="sk-card reveal d1">
+        <div class="sk-head"><div class="sk-icon t" style="font-family:var(--mono);font-size:12px;font-weight:600;color:var(--teal)">{;}</div><div class="sk-cat">Languages</div></div>
+        <div class="sk-tags"><span class="sk-tag">JavaScript</span><span class="sk-tag">TypeScript</span><span class="sk-tag">Python</span><span class="sk-tag">C++17</span></div>
+      </div>
+      <div class="sk-card reveal d2">
+        <div class="sk-head"><div class="sk-icon a">🔧</div><div class="sk-cat">Tools</div></div>
+        <div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">Postman</span><span class="sk-tag">VSCode</span><span class="sk-tag">WebSockets</span><span class="sk-tag">Netlify</span><span class="sk-tag">Arduino IDE</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Work</div>
+    <h2>Projects I'm proud of.</h2>
+    <p style="color:var(--muted);max-width:500px;margin-top:4px;font-size:15px">Built for real use cases, with production-quality decisions — not just tutorial code.</p>
+    <div class="proj-grid">
+
+      <!-- 01 TaskManager -->
+      <a href="https://github.com/thecreatorzx/taskManager" target="_blank" rel="noopener" class="proj-item reveal">
+        <div class="proj-num">01</div>
+        <div>
+          <div class="proj-name">TaskManager</div>
+          <div class="proj-desc">A secure, full-stack task app that goes far beyond basic CRUD. I used <strong style="color:var(--text)">httpOnly cookies</strong> for JWT (not localStorage) to prevent XSS, <strong style="color:var(--text)">bcrypt with salt rounds</strong> for password hashing, and <strong style="color:var(--text)">Prisma ORM</strong> for parameterised queries to block SQL injection. The README documents every security decision and why it was made — a habit I picked up reading real codebase postmortems.</div>
+          <div class="proj-tags">
+            <span class="tag">React 18</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Prisma</span><span class="tag">TailwindCSS</span><span class="tag">JWT</span>
+          </div>
+          <div class="proj-highlight">Last committed March 18, 2026 — actively maintained</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px">
+          <div class="proj-mockup">
+            <div class="mock-bar">
+              <div class="mdot" style="background:#FF5F57"></div><div class="mdot" style="background:#FEBC2E"></div><div class="mdot" style="background:#28C840"></div>
+            </div>
+            <div class="mock-body">
+              <div style="display:flex;justify-content:space-between;margin-bottom:9px"><span style="color:var(--text);font-weight:600;font-size:11px">My Tasks</span><span style="color:var(--p2);font-size:10px">+ New</span></div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:5px;padding:6px 8px">
+                  <div style="width:12px;height:12px;border-radius:3px;background:var(--p);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;flex-shrink:0">✓</div>
+                  <span style="text-decoration:line-through;opacity:0.4;font-size:10px">Setup auth middleware</span>
+                  <span style="margin-left:auto;font-size:8px;padding:1px 5px;border-radius:3px;background:var(--p3);color:var(--p2)">Done</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.03);border:1px solid rgba(124,111,255,0.3);border-radius:5px;padding:6px 8px">
+                  <div style="width:12px;height:12px;border-radius:3px;border:1.5px solid var(--muted2);flex-shrink:0"></div>
+                  <span style="font-size:10px;color:var(--text)">Add Prisma schema</span>
+                  <span style="margin-left:auto;font-size:8px;padding:1px 5px;border-radius:3px;background:var(--teal2);color:var(--teal)">Dev</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:5px;padding:6px 8px">
+                  <div style="width:12px;height:12px;border-radius:3px;border:1.5px solid var(--muted2);flex-shrink:0"></div>
+                  <span style="font-size:10px;color:var(--muted)">Write API tests</span>
+                  <span style="margin-left:auto;font-size:8px;padding:1px 5px;border-radius:3px;background:rgba(251,176,64,0.1);color:var(--amber)">Todo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </a>
+
+      <!-- 02 Stock Tracker -->
+      <a href="https://github.com/thecreatorzx/stock-tracker" target="_blank" rel="noopener" class="proj-item reveal">
+        <div class="proj-num">02</div>
+        <div>
+          <div class="proj-name">Stock Price Tracker</div>
+          <div class="proj-desc">Real-time stock visualiser with Flask backend and React frontend. The interesting engineering challenge: Alpha Vantage's free tier has strict rate limits. I solved it with a <strong style="color:var(--text)">debounced refresh mechanism</strong> and <strong style="color:var(--text)">SQLite caching layer</strong> that stores recent API responses — cutting call frequency by 50% while keeping the UI responsive. Interactive charts, watchlists, historical views. Deployed on Netlify.</div>
+          <div class="proj-tags">
+            <span class="tag">React 18</span><span class="tag">Flask 2.2</span><span class="tag">SQLite</span><span class="tag">Python 3.10</span><span class="tag">Alpha Vantage API</span><span class="tag t">Netlify</span>
+          </div>
+          <div class="proj-highlight">50% API call reduction via smart caching</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px">
+          <div class="proj-mockup">
+            <div class="mock-bar">
+              <div class="mdot" style="background:#FF5F57"></div><div class="mdot" style="background:#FEBC2E"></div><div class="mdot" style="background:#28C840"></div>
+            </div>
+            <div class="mock-body">
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+                <span style="color:var(--text);font-weight:700;font-size:12px">AAPL</span>
+                <span style="color:var(--green);font-size:10px">+2.34%</span>
+              </div>
+              <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Apple Inc.</div>
+              <div style="font-size:18px;font-weight:700;color:var(--text);font-family:var(--font);letter-spacing:-0.04em;margin-bottom:8px">$189.42</div>
+              <svg viewBox="0 0 186 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;margin-bottom:8px">
+                <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4ADE80" stop-opacity="0.28"/><stop offset="100%" stop-color="#4ADE80" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0 38 L15 34 L30 36 L46 28 L62 26 L78 20 L93 22 L109 14 L124 10 L140 16 L155 8 L171 4 L186 2 L186 48 L0 48 Z" fill="url(#sg)"/>
+                <path d="M0 38 L15 34 L30 36 L46 28 L62 26 L78 20 L93 22 L109 14 L124 10 L140 16 L155 8 L171 4 L186 2" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <div style="display:flex;gap:4px">
+                <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(124,111,255,0.15);color:var(--p2);font-family:var(--mono)">1D</span>
+                <span style="font-size:9px;padding:2px 6px;border-radius:3px;color:var(--muted2);font-family:var(--mono)">1W</span>
+                <span style="font-size:9px;padding:2px 6px;border-radius:3px;color:var(--muted2);font-family:var(--mono)">1M</span>
+                <span style="font-size:9px;padding:2px 6px;border-radius:3px;color:var(--muted2);font-family:var(--mono)">1Y</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </a>
+
+      <!-- 03 Chat -->
+      <a href="https://github.com/thecreatorzx/ChatUsingWebsockets" target="_blank" rel="noopener" class="proj-item reveal">
+        <div class="proj-num">03</div>
+        <div>
+          <div class="proj-name">Real-Time Chat App</div>
+          <div class="proj-desc">A WebSocket-powered chat app demonstrating <strong style="color:var(--text)">persistent bidirectional connections</strong> — something most junior devs haven't touched. Unlike polling or SSE, WebSockets hold a persistent TCP connection, which is how Slack, Figma, and trading platforms work. This project shows understanding of real-time event-driven architecture with Node.js, relevant for any role involving collaboration tools, fintech dashboards, or live data feeds.</div>
+          <div class="proj-tags">
+            <span class="tag">Node.js</span><span class="tag">WebSockets</span><span class="tag">Express</span><span class="tag">JavaScript</span>
+          </div>
+          <div class="proj-highlight">Persistent TCP — no polling, sub-50ms latency</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:14px">
+          <div class="proj-mockup">
+            <div class="mock-bar">
+              <div class="mdot" style="background:#FF5F57"></div><div class="mdot" style="background:#FEBC2E"></div><div class="mdot" style="background:#28C840"></div>
+            </div>
+            <div class="mock-body">
+              <div style="display:flex;align-items:center;gap:5px;font-size:9px;color:var(--green);margin-bottom:9px"><div style="width:5px;height:5px;border-radius:50%;background:var(--green)"></div>3 online · WebSocket connected</div>
+              <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:9px">
+                <div style="max-width:80%;font-size:10px;padding:6px 9px;border-radius:2px 7px 7px 7px;background:rgba(255,255,255,0.05);color:var(--muted)">Is the API working?</div>
+                <div style="max-width:80%;font-size:10px;padding:6px 9px;border-radius:7px 2px 7px 7px;background:var(--p);color:#fff;align-self:flex-end">Yeah, tested it ✓</div>
+                <div style="max-width:80%;font-size:10px;padding:6px 9px;border-radius:2px 7px 7px 7px;background:rgba(255,255,255,0.05);color:var(--muted)">WebSocket or polling?</div>
+                <div style="max-width:80%;font-size:10px;padding:6px 9px;border-radius:7px 2px 7px 7px;background:var(--p);color:#fff;align-self:flex-end">WebSocket — persistent.</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;padding:5px 8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px">
+                <span style="font-size:9px;color:var(--muted2);flex:1">Message...</span>
+                <span style="font-size:10px;color:var(--p2)">↑</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-arrow">↗</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="eyebrow">Recognition</div>
+    <h2>Highlights &amp; achievements.</h2>
+    <div class="ach-grid">
+      <div class="ach-card gold reveal">
+        <div class="ach-wrap">🥇</div>
+        <div>
+          <div class="ach-big">1st Place</div>
+          <div class="ach-title">LGSI Technova Hackathon</div>
+          <div class="ach-sub">Won ₹2,00,000 prize with a team of 8 engineers at LG Soft India's internal hackathon, Jul 2025 — developing an innovative automotive software prototype.</div>
+        </div>
+      </div>
+      <div class="ach-card purple reveal d1">
+        <div class="ach-wrap">🏆</div>
+        <div>
+          <div class="ach-big">Top 5%</div>
+          <div class="ach-title">Smart India Hackathon Grand Finalist</div>
+          <div class="ach-sub">SIH Hardware Edition at KIET Ghaziabad, Dec 2024. Built an AI-powered hybrid energy storage system with ESP32 microcontrollers and TensorFlow — top 5% of 200+ teams.</div>
+        </div>
+      </div>
+      <div class="ach-card teal reveal d2">
+        <div class="ach-wrap">🎓</div>
+        <div>
+          <div class="ach-big">8.51</div>
+          <div class="ach-title">CGPA — Academic Excellence</div>
+          <div class="ach-sub">Consistent high performance across all Computer Science modules at Galgotias, while actively building projects, solving LeetCode, and competing in hackathons.</div>
+        </div>
+      </div>
+      <div class="ach-card green reveal d3">
+        <div class="ach-wrap">💻</div>
+        <div>
+          <div class="ach-big">250+</div>
+          <div class="ach-title">LeetCode Problems Solved</div>
+          <div class="ach-sub">Regular practice across data structures, dynamic programming, graph algorithms, and binary search — building the problem-solving foundation behind efficient code.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="eyebrow">Get In Touch</div>
+      <h2 class="c-title">Let's build<br><span>something real.</span></h2>
+      <p class="c-sub">Open to full-time roles, contract work, and interesting projects.<br>I reply within 24 hours — usually much less.</p>
+      <a href="mailto:saad.mohd.dev@gmail.com" class="c-btn">saad.mohd.dev@gmail.com ↗</a>
+      <div class="socials">
+        <a href="https://linkedin.com/in/webdevmsaad" target="_blank" rel="noopener" class="soc">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+        </a>
+        <a href="https://github.com/thecreatorzx" target="_blank" rel="noopener" class="soc">
+          <svg class="stroke" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub
+        </a>
+        <a href="https://codepen.io/thecreatorzx" target="_blank" rel="noopener" class="soc">
+          <svg class="stroke" viewBox="0 0 24 24"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/><polyline points="2 15.5 12 8.5 22 15.5"/><line x1="12" y1="2" x2="12" y2="8.5"/></svg>CodePen
+        </a>
+        <a href="tel:+918081626318" class="soc">
+          <svg class="stroke" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.17 2 2 0 012.22 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.66-.66a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.92v1z"/></svg>+91 8081626318
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Designed &amp; built by Mohd Saad &middot; 2026 &middot; Greater Noida, India</div></footer>
+
+<script>
+const obs = new IntersectionObserver(
+  es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in') }),
+  { threshold: 0.1 }
+);
+document.querySelectorAll('.reveal,.reveal-l').forEach(el => obs.observe(el));
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.borderBottomColor =
+    window.scrollY > 50 ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.06)';
+});
+</script>
+</body>
+</html>
