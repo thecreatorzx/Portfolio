@@ -1,6 +1,6 @@
 # Mohd Saad — Portfolio
 
-Personal portfolio website of **Mohd Saad**, a Full-Stack Developer and final-year B.Tech Computer Science student at Galgotias University, Greater Noida (graduating July 2026).
+Personal portfolio website of [**Mohd Saad**](https://itsmyportfolioapp.netlify.app), a Full-Stack Developer and final-year B.Tech Computer Science student at Galgotias University, Greater Noida (graduating July 2026).
 
 ---
 
